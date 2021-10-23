@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head %}
+    <script src="{% static 'funcionario/js/list.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa-solid fa-book-atlas"></i>
+            {{ title }} / {{ date_now }}
+        </h3>
+    </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Rut</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido Paterno</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Cargo</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+               </thead>
+                
+            </table>
+        </div>
+              <div class="card-footer">
+                  <a class="btn btn-primary btn-flat btnAdd"><i class="fa-solid fa-plus"></i>Nuevo Registro</i></a>
+              </div>
+</div>
+<div class="modal fade" id="MyModalFuncionario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form method="post" action="." enctype="multipart/form-data">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><b><i class="fas fa-search"></i><span></span></b></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <div class="container-fluid">
+                <input name="action" type="hidden" value="add">
+                <input name="fun_id" id="fun_id" type="hidden" value="0">
+                {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label for="email">{{ field.label }}:</label>
+                        {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+                    </div>
+                {% endfor %}
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary btn-flat btn-block"><i class="fas fa-save"></i> Guardar</button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+<script>
+    {% if form.errors %}
+        var errors = '';
+        {% for field in form %}
+            {% for error in field.errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+        {% endfor %}
+        Swal.fire({
+            title: 'Error!',
+            text: errors,
+            icon: 'error'
+        });
+    {% endif %}    
+</script>
+{% endblock %}
