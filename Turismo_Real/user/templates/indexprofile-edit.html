@@ -1,0 +1,81 @@
+{% extends 'index_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<form method="post" action=".">
+    <br>
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            {% if action == 'add' %}
+                <i class="fa-solid fa-plus"></i>
+            {% else %}
+                <i class="fa-solid fa-edit"></i>
+            {% endif %}
+            {{ title}}
+        </h3>
+    </div>
+        <div class="card-body">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Error!</strong> No se puede <a href="#" class="alert-link">Guardar los datos/a>.
+                
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+              
+                            {% endfor %}
+                         {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <br><label for="email">{{ field.label}}:</label>
+                    {{ field|attr:'autocomplete:off' }}
+                </div>
+            {% endfor %}
+        </div>
+              <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-flat"><i class="fa-solid fa-save"></i> Actualizar Datos</i></button>
+                  <a href="{{ perfil_url }}" class="btn btn-danger btn-flat"><i class="fa-solid fa-times"></i> Cancelar</i></a>
+              </div>
+</form>
+<script>
+    {% if form.errors %}
+            var errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            var parameters = new FormData(this);
+
+            submit_whit_ajax(window.location.pathname, 'Notificación', '¿Estas seguro de actualizar sus datos?', parameters, function () {
+                Swal.fire({
+                    title: 'Alerta',
+                    text: 'Datos actualizados correctamente',
+                    icon: 'success',
+                    timer: 2000,
+                    onClose: () => {
+                        location.href = '{{ datos_url }}';
+                    }
+                }).then((result) => {
+
+                });
+            });
+        });     
+</script>
+{% endblock %}

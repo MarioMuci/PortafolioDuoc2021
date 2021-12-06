@@ -1,0 +1,40 @@
+{% extends 'index_base.html' %}
+
+    
+{% block content %}
+        <!-- ======= Facts Section ======= -->
+    <section id="facts">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title"><i class='bx bxs-user-detail'></i> {{ title }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Nombre de Usuario: {{ user.username }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Nombre: {{ user.first_name }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Rut: {{ user.rut }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Apellidos: {{ user.apellido_paterno }} {{ user.apellido_materno }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Dirección: {{ user.direccion }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Telefono de Contacto: {{ user.numero_contacto }}</h3>
+          <hr>
+          <br>
+          <h3 class="section-description">Correo Electronico: {{ user.email }}</h3>
+          <hr>
+          <br>
+         <center><a href="{% url 'editarmiperfil' %}" class="btn btn-success btn-flat"><i class="fa-solid fa-user-gear"></i> Editar Perfil</i></a> <a href="{% url 'editarmicontraseña' %}" class="btn btn-primary btn-flat"><i class="fa-solid fa-asterisk"></i> Editar Contraseña</i></a>
+        </div>
+        
+
+      </div>
+
+    </section><!-- End Facts Section -->
+{% endblock %}

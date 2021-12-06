@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<section>
+    <div>
+      <center><h1>{{ title }} / {{ date_now }}</h1>
+    </div>
+ </section>
+<br>
+<div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+		{% for obj in object_list %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-V">
+             {#{{ obj.dep_imagen_portada }}#}
+                <img src="{{ obj.get_image }}" style="width: 300px; height: 300px;">
+            <div class="portfolio-info">
+              <h4>Nombre: {{ obj.dep_nombre }}</h4>
+              <p>Renta: ${{ obj.dep_canon_renta }}<br> 
+              	Ubicación: {{ obj.dep_ubicacion }}<br>
+              	Zona: {{ obj.f_zona }}</p>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+<script>
+    {% if messages %}
+        var html = '<p>';
+        {% for message in messages %}
+            html += '{{ message }}<br>';
+        {% endfor %}
+        html += '</p>';
+            Swal.fire({
+            title: 'Error!',
+            html: html,
+            icon: 'error'
+        });
+    {% endif %}
+</script>
+
+{% endblock %}

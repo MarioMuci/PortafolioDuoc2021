@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <script src="{% static 'user/js/list.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-user-friends"></i>
+            {{ title}} / {{ date_now }}
+        </h3>
+    </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Rut</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">Apellido Paterno</th>
+                        <th scope="col">Apellido Materno</th>
+                        <th scope="col">Nombre de Usuario</th>
+                        <th scope="col">Correo Electronico</th>
+                        <th scope="col">Fecha de Registro</th>
+                        <th scope="col">Grupos</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+               </thead>
+            
+            </table>
+        </div>
+              <div class="card-footer">
+                  <a href="{{ crear_url }}" class="btn btn-primary btn-flat"><i class="fa-solid fa-plus"></i> Nuevo Registro</i></a>
+              </div>
+</div>
+{% endblock %}
+

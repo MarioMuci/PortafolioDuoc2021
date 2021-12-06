@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+	<!-- Daterangepicker -->
+	<script src="{% static 'lib/moment-2.25.3/moment.js' %}"></script>
+    <script src="{% static 'lib/daterangepicker-3.1/spanish.js' %}"></script>
+    <script src="{% static 'lib/daterangepicker-3.1/daterangepicker.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'lib/daterangepicker-3.1/daterangepicker.css' %}"/>
+    <script src="{% static 'reportedetallecostodepartamento/js/reporte.js' %}"></script>
+    <!-- Datatables -->
+    <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/css/buttons.bootstrap.min.css' %}"/>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/dataTables.buttons.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/jszip-2.5.0/jszip.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/pdfmake-0.1.36/pdfmake.min.js' %}" type="text/javascript"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/pdfmake-0.1.36/vfs_fonts.js' %}" type="text/javascript"></script>
+    <script src="{% static 'lib/datatables-1.10.20/plugins/buttons-1.6.1/js/buttons.html5.min.js' %}" type="text/javascript"></script>
+{% endblock %}
+{% block content %}
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa-solid fa-chart-line"></i>
+            {{ title}} 
+        </h3>
+    </div>
+        <div class="card-body">
+        	<div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Rango de fechas:</label>
+                        {{ form.date_range }}
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <table class="table" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Nro</th>
+                        <th scope="col">Fecha de Ingreso</th>
+                        <th scope="col">Funcionario</th>
+                        <th scope="col">Costo Diario</th>
+                        <th scope="col">Costo Semanal</th>
+                    </tr>
+               </thead>
+            
+            </table>
+        </div>
+              <div class="card-footer">
+                  <a href="{{ lista_url }}" class="btn btn-success btn-flat"><i class="fas fa-sync"></i> Actualizar</i></a>
+              </div>
+</div>
+{% endblock %}

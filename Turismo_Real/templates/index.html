@@ -1,0 +1,449 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Turismo Real</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/turismologopngicono.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Regna - v4.6.0
+  * Template URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex justify-content-between align-items-center">
+
+      <div id="logo">
+        <a href="{% url 'index' %}"><img src="{% static 'assets/img/turismologopngicono.png' %}"  style="width:100px;" alt=""></a>
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!--<h1><a href="index.html">Regna</a></h1>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#services"><box-icon name='donate-heart' animation='flashing' ></box-icon>Servicios</a></li>
+          <li><a class="nav-link scrollto " href="#portfolio"><box-icon name='building-house' animation='flashing' ></box-icon>Departamentos</a></li>
+          <li><a class="nav-link scrollto" href="#team"><box-icon name='paint-roll' animation='flashing' ></box-icon>Nuestra Web</a></li>
+          <li><a class="nav-link scrollto" href="#contact"><box-icon name='contact' type='solid' animation='flashing' ></box-icon>Contacto</a></li>
+          {% if request.user.is_authenticated %}
+            <li><a class="nav-link scrollto" href="{% url 'home' %}"><box-icon name='user-check' animation='flashing' ></box-icon>Bienvenido {{ request.user.username }}</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'listadodepartamentosdisponibles' %}"><box-icon name='book-reader' animation='flashing' ></box-icon>Reservar</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'misdatos' %}"><box-icon name='user-circle' animation='flashing' ></box-icon>Mi Perfil</a></li>
+            <li><a class="nav-link scrollto" href="{% url 'logout' %}"><box-icon name='user-x'></box-icon>Cerrar Sesión</a></li>
+          {% else %}
+            <li><a class="nav-link scrollto" href="{% url 'login' %}" ><box-icon name='user-plus' animation='flashing' ></box-icon>Iniciar Sesión</a></li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container" data-aos="zoom-in" data-aos-delay="100">
+      <h1>Bienvenido a Turismo Real</h1>
+      <h2>Somos una empresa dedicada a la hoteleria, con mas de 10 años entregando el mejor servicio a nuestros clientes.</h2>
+      <a href="#facts" class="btn-get-started">Empezemos</a>
+    </div>
+  </section><!-- End Hero Section -->
+
+  <main id="main">
+
+    <!-- ======= Facts Section ======= -->
+    <section id="facts">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Nosotros</h3>
+          <p class="section-description">Nuestros servicios nos brindan calidad y excelencia a nivel nacional.</p>
+        </div>
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Clientes</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="534" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Trabajadores</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Departamentos</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Servicios</p>
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </section><!-- End Facts Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Servicios</h3>
+          <p class="section-description">Contamos con los mejores servicios, para nuestros clientes.</p>
+        </div>
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+            <div class="box">
+              <div class="icon"><a><box-icon name='tree' type='solid' ></box-icon></a></div>
+              <h4 class="title"><a>Servicio de Turismo</a></h4>
+              <p class="description">Lugares para ver, formas de recorrer y experiencias destacadas.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+            <div class="box">
+              <div class="icon"><a><box-icon name='buildings'></box-icon></a></div>
+              <h4 class="title"><a>Servicio de Hoteleria</a></h4>
+              <p class="description">Una mezcla de lo encantador, lo moderno y lo comprobado.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+            <div class="box">
+              <div class="icon"><a><box-icon name='taxi' type='solid' ></box-icon></a></div>
+              <h4 class="title"><a>Serivicio de Trasnporte</a></h4>
+              <p class="description">Contamos con una flota de Mini van del 2014 al 2020 todos los modelos y marcas.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action">
+      <div class="container">
+        <div class="row" data-aos="zoom-in">
+          <div class="col-lg-9 text-center text-lg-start">
+            <h3 class="cta-title">Reservas</h3>
+            <p class="cta-text"> Si necesitas realizar una reserva, registrate en nuestra pagina, para obtener una mejor experiencia.</p>
+          </div>
+          <div class="col-lg-3 cta-btn-container text-center">
+            <a class="cta-btn align-middle" href="#">Resgistrate ya!</a>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Call To Action Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Departamentos</h3>
+          <p class="section-description">Contamos con 10 departamentos a nivel nacional.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Todo</li>
+              <li data-filter=".filter-RM">RM Región</li>
+              <li data-filter=".filter-IV">IV Región</li>
+              <li data-filter=".filter-V">V Región</li>
+              <li data-filter=".filter-IX">IX Región</li>
+              <li data-filter=".filter-X">X Región</li>
+              <li data-filter=".filter-XII">XII Región</li>
+              <li data-filter=".filter-XIV">XIV Región</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-V">
+            <img src="{% static 'img/ViñadelMar.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Viña del Mar</h4>
+              <p>V Región</p>
+              <a href="{% static 'img/ViñadelMar.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="V Región" ><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-IV">
+            <img src="{% static 'img/LaSerena.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>La Serena</h4>
+              <p>IV Región</p>
+              <a href="{% static 'img/LaSerena.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="IV Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-IX">
+            <img src="{% static 'img/Pucon.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Pucón</h4>
+              <p>IX Región</p>
+              <a href="{% static 'img/Pucon.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="IX Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-X">
+            <img src="{% static 'img/PuertoVaras.jpeg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Puerto Varas</h4>
+              <p>X Región</p>
+              <a href="{% static 'img/PuertoVaras.jpeg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="X Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-IV">
+            <img src="{% static 'img/Coquimbo.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Coquimbo</h4>
+              <p>IV Región</p>
+              <a href="{% static 'img/Coquimbo.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="IV Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-XII">
+            <img src="{% static 'img/PuntaArenas.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Punta Arenas</h4>
+              <p>XII Región</p>
+              <a href="{% static 'img/PuntaArenas.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="XII Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-V">
+            <img src="{% static 'img/PuntaArenas.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Valparaíso</h4>
+              <p>V Región</p>
+              <a href="{% static 'img/PuntaArenas.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="V Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-XIV">
+            <img src="{% static 'img/Valdivia.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Valdivia</h4>
+              <p>XIV Región</p>
+              <a href="{% static 'img/Valdivia.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="XIV Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-X">
+            <img src="{% static 'img/PuertoMontt.jpeg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Puerto Montt</h4>
+              <p>X Región</p>
+              <a href="{% static 'img/PuertoMontt.jpeg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="X Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-RM">
+            <img src="{% static 'img/Melipilla.jpg' %}" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Melipilla</h4>
+              <p>RM Región</p>
+              <a href="{% static 'img/Melipilla.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="RM Región"><i class="bx bx-plus"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team">
+      <div class="container" data-aos="fade-up">
+        <div class="section-header">
+          <h3 class="section-title">Polifasicos Team</h3>
+          <p class="section-description">Grupo dedicado a la cración de paginas web para empresas.</p>
+        </div>
+        <div class="row">
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="pic"><img src="{% static 'img/Mario.jpg' %}" alt=""></div>
+              <h4>Mario Muci</h4>
+              <span>Jefe de Proyecto</span>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="pic"><img src="{% static 'img/Michael.jpg' %}" alt=""></div>
+              <h4>Michael Figueroa</h4>
+              <span>DBA</span>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
+              <div class="pic"><img src="{% static 'img/Luis.jpg' %}" alt=""></div>
+              <h4>Luis Toro</h4>
+              <span>Arquitecto</span>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="member" data-aos="fade-up" data-aos-delay="400">
+              <div class="pic"><img src="{% static 'img/account.jpg' %}" alt=""></div>
+              <h4>Leaonardo Acuña</h4>
+              <span>QA</span>
+              <div class="social">
+                <a href=""><i class="bi bi-twitter"></i></a>
+                <a href=""><i class="bi bi-facebook"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                <a href=""><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h3 class="section-title">Encuentranos en:</h3>
+          <p class="section-description">Av. Esq. Blanca 501, Maipú, Región Metropolitana</p>
+        </div>
+      </div>
+
+      <!-- Uncomment below if you wan to use dynamic maps -->
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.61392082013!2d-70.75462978479909!3d-33.51142058075663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662dcd1fe0c7bab%3A0x4d17b82a7ba77488!2sDuoc%20UC%3A%20Sede%20Maipu!5e0!3m2!1ses-419!2scl!4v1634763155986!5m2!1ses-419!2scl" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+      <div class="container mt-5">
+        <div class="row justify-content">
+
+          <div class="col-lg-3 col-md-4">
+
+            <div class="info">
+             
+              <div>
+                <i class="bi bi-envelope"></i>
+                <p>polifasicosteam@gmail.com</p>
+              </div>
+
+              <div>
+                <i class="bi bi-phone"></i>
+                <p>+56225606900</p>
+              </div>
+            </div>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright. Todo los derechos reservados
+      </div>
+      <center><a href="http://www.websmultimedia.com/contador-de-visitas-gratis" title="Contador De Visitas Gratis">
+      <img style="border: 0px solid; display: inline;" alt="contador de visitas" src="http://www.websmultimedia.com/contador-de-visitas.php?id=307035"></a><br><a href='http://www.websmultimedia.com/contador-de-visitas-gratis'>Contador de visitas
+      <div class="credits">
+        <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Regna
+      -->
+        Diseñado por <a>Polifasicos Team</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

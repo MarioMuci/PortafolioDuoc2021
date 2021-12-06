@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <script src="{% static 'departamento/js/list.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa-solid fa-book-atlas"></i>
+            {{ title }} / {{ date_now }}
+        </h3>
+    </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Ubicación</th>
+                        <th scope="col">Capacidad</th>
+                        <th scope="col">Acondicionado</th>
+                        <th scope="col">Renta</th>
+                        <th scope="col">Disponible</th>
+                        <th scope="col">Costo Mes</th>
+                        <th scope="col">Tipologia</th>
+                        <th scope="col">Piso</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Zona</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+               </thead>
+               
+            </table>
+        </div>
+            <div class="card-footer">
+                <a href="{{ crear_url }}" class="btn btn-primary btn-flat"><i class="fa-solid fa-plus"></i> Nuevo Registro</i></a>
+            </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<style>
+    .img-invoice {
+        width: 50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .head {
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    #invoice thead tr th {
+        text-align: left;
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+        padding-top: 4px;
+    }
+
+    #invoice thead tr {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    #invoice tbody tr {
+        padding: 0;
+    }
+
+    .text-center{
+        text-align: center;
+    }
+</style>
+<body>
+<img src="{{ icon }}" class="img-invoice" style="width:150px;">
+<p>
+    <b>DETALLE COSTO DEPARTAMENTO:</b> {{ detallecostodepartamento.id }}<br>
+    <b>FECHA DE REPORTE:</b> {{ detallecostodepartamento.des_cos_fecha_ingreso }}<br>
+    <b>FUNCIONARIO:</b> {{ detallecostodepartamento.pf_fun.fun_nombre }} {{ detallecostodepartamento.pf_fun.fun_apellido_paterno }} {{ detallecostodepartamento.pf_fun.fun_apellido_materno }}<br>
+    <b>RUT:</b> {{ detallecostodepartamento.pf_fun.fun_rut }}<br>
+</p>
+<table id="invoice">
+    <thead>
+    <tr>
+        <th style="width: 30%;">CANTIDAD DE DEPARTAMENTOS</th>
+        <th style="width: 30%;">COSTO MENSUAL</th>
+        <th style="width: 30%;">NOMBRE DEL DEPARTAMENTO</th>
+        <th style="width: 10%;">TOTAL</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for d in detallecostodepartamento.costodepartamento_set.all %}
+        <tr {% if forloop.first %}style="padding-top: 3px;" {% endif %}>
+            <td>{{ d.cos_cant }}</td>
+            <td>${{ d.cos_mensual }}</td>
+            <td>{{ d.dep.dep_nombre }}</td>
+            <td>${{ d.cos_subtotal }}</td>
+        </tr>
+    {% endfor %}
+    <tr style="border-top: 1px solid black; padding-top: 4px;">
+        <td colspan="3"><b>COSTO DIARIO</b></td>
+        <td style="text-align: right">${{ detallecostodepartamento.des_cos_dep_dia }}</td>
+    </tr>
+    <tr style="padding-top: 0px;">
+        <td colspan="3"><b>COSTO SEMANAL</b></td>
+        <td style="text-align: right">${{ detallecostodepartamento.des_cos_dep_semanal }}</td>
+    </tr>
+    </tbody>
+</table>
+<table style="margin-top: 250px;">
+    <thead>
+    <tr>
+        <th>****Turismo Real****</th>
+    </tr>
+    </thead>
+</table>
+</body>
+</html>

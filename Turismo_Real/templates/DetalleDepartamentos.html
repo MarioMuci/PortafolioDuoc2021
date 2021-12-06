@@ -1,0 +1,77 @@
+{% extends 'index_base.html' %}
+{% load static %}
+{% block head %}
+    <!-- Sweetaler -->
+    <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+    <!-- Funciones -->
+    <script src="{% static 'js/function.js' %}"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <!-- Jquery Confirm -->
+    <link rel="stylesheet" href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}">
+    <script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
+{% endblock %}
+{% block content %}
+<br>
+<section>
+    <div>
+      <center><h1>{{ object }} / {{ date_now }}</h1>
+    </div>
+ </section>
+<br>
+<form method="post" action=".">
+<div class="card">
+    <div class="card-header">
+        <div class="container">
+            <div class="row">
+                <div class="card">
+                    {% csrf_token %}
+                    {#{{ object.dep_imagen_portada }}#}
+                    <img class="card-img-top" src="{{ object.get_image }}">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="card-text"><strong>Renta: ${{ object.dep_canon_renta }}</strong></p>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text"><strong>Ubicación: {{ object.dep_ubicacion }}</strong></p>
+                            </div>
+                            <div class="col-md-12">
+                                <p class="card-text"><strong>Zona: {{ object.f_zona }}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-flat"><i class="fa-solid fa-save"></i> Reservar</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script type="text/javascript">
+     $('form').on('submit', function (e) {
+            e.preventDefault();
+            var parameters = new FormData(this);
+            data = {
+            'f_use': "{{ request.user.id }}",
+            'f_dep': "{{ object.dep_id }}",
+            'res_total': "{{ object.dep_canon_renta }}",
+            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val()
+        }
+        $.ajax({
+            data: data,
+            url: "{% url 'registrarreserva' %}",
+            type: 'POST',
+            success:function(response){
+                success(response.mensaje);
+                window.location.href = response.url;
+            },
+            error: function(error){
+
+            }
+        });
+    });     
+</script>
+{% endblock %}

@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Turismo Real</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Tecnomarket -->
+  <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+  <!-- Mis Estilos -->
+  <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+  <!-- bootstrap5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  <!-- dropdown -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <!-- Sweetaler -->
+  <script src="{% static 'lib/sweetalert2-9.10.0/sweetalert2.all.min.js' %}"></script>
+  <!-- Funciones -->
+  <script src="{% static 'js/function.js' %}"></script>
+  <!-- Datatables -->
+  <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+  <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+  <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+  <!-- Jquery Confirm -->
+  <link rel="stylesheet" href="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.css' %}">
+  <script src="{% static 'lib/jquery-confirm-v3.3.4/jquery-confirm.min.js' %}"></script>
+  <!-- Font Awesome Free -->
+  <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  {% block head %}
+
+  {% endblock %}
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}"><a class="navbar-brand" href="{% url 'home' %}" ><img src="{% static 'img/turismologopngicono.png' %}" alt="Logo" style="width:60px;" class="rounded-pill"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="{% url 'index' %}">Inicio</a></font>
+        </li>
+        <li class="nav-item">
+           <font size=2><a class="nav-link" href="{% url 'listadoarticulo' %}">Articulos</a></font>
+        </li>
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="{% url 'listadodepartamento' %}">Departamentos</a></font>
+        </li>
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="{% url 'listadofuncionario' %}">Funcionarios</a></font>
+        </li>
+        <li class="nav-item">
+           <font size=2><a class="nav-link" href="{% url 'listadousuario' %}">Usuarios</a></font>
+        </li>
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="{% url 'detallecostodepartamento' %}">Gastos Departamentos</a></font>
+        </li>
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="#">Servicios</a></font>
+        </li>
+        <li class="nav-item">
+          <font size=2><a class="nav-link" href="#">"Bienvenido {{ request.user.username }}"</a></font>
+        </li>
+        {% if request.user.groups.all %}
+          <font size=2><li class="nav-item dropdown">
+             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Perfil</a>
+                <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+                  {% for g in request.user.groups.all %}
+                    <font size=2><li><a class="dropdown-item"><i class="fa-solid fa-user-tie"></i> {{ g.name }}</a></li></font>
+                  {% endfor %}
+                  <font size=2><li><a class="dropdown-item" href="{% url 'editarperfil' %}"><i class="fa-solid fa-id-card"></i> Editar Perfil</a></li></font>
+                  <font size=2><li><a class="dropdown-item" href="{% url 'editarcontraseña' %}"><i class="fa-solid fa-asterisk"></i> Editar Contraseña</a></li></font>
+                </ul>
+          </li></font>
+        {% endif %}
+      </ul>
+    </div>
+    <span class="dropdown-header" style="font-size: 12px;">
+      Sú último acceso fue {{ request.user.last_login }}
+    </span>
+    <ul class="nav justify-content-end">
+      <a type="button" class="btn btn-primary" href="{% url 'logout' %}">Cerrar Sesión</a>
+    </ul>
+  </div>
+</nav>
+
+
+<div id="contenido">
+  {% block content %}
+  
+  {% endblock %}
+</div>
+
+<footer class="main-footer">
+<div class="marcas">
+  <img src="{% static 'img/whatsapp.png' %}" alt="whatsapp">
+  <img src="{% static 'img/youtube.png' %}" alt="youtube">
+  <img src="{% static 'img/twitter.png' %}" alt="twitter">
+  <img src="{% static 'img/instagram.png' %}" alt="instagram">
+  <img src="{% static 'img/facebook.png' %}" alt="facebook">
+</div>
+<div class="logo_footer">
+  <a href="{% url 'home' %}"><img src="{% static 'img/turismologopngicono.png' %}"  style="width:100px;" alt=""></a>
+</div>
+</footer>
+
+</body>
+</html>

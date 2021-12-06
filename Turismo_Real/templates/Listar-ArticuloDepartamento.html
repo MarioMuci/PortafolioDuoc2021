@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+    <script src="{% static 'articulo/js/list.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa-solid fa-book-atlas"></i>
+            {{ title}} / {{ date_now }}
+        </h3>
+    </div>
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+               </thead>
+            
+            </table>
+        </div>
+              <div class="card-footer">
+                  <a href="{{ crear_url }}" class="btn btn-primary btn-flat"><i class="fa-solid fa-plus"></i> Nuevo Registro</i></a>
+              </div>
+</div>
+{% endblock %}
+
