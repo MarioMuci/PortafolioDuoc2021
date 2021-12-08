@@ -23,6 +23,9 @@ class User(AbstractUser):
 			('is_cliente', _('Is Cliente')),
 		)
 
+	def get_full_name(self):
+		return '{} {} {}'.format(self.first_name, self.apellido_paterno, self.apellido_materno)
+
 	def __str__(self):
 		return str(self.rut)
 
